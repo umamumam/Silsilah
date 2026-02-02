@@ -248,8 +248,15 @@
 
         .node.deceased {
             background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
-            border-color: var(--deceased);
             opacity: 0.85;
+        }
+
+        .node.deceased:not(.female) {
+            border-color: var(--male);
+        }
+
+        .node.female.deceased {
+            border-color: var(--female);
         }
 
         .node.deceased::after {
