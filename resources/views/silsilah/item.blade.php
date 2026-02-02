@@ -1,57 +1,69 @@
 <li>
     <div class="d-inline-block">
         @if(!$person->ayah_id && !$person->ibu_id)
-        <button class="btn btn-success btn-sm btn-circle mb-1" data-bs-toggle="modal"
-            data-bs-target="#modalOrangTua{{ $person->id }}">↑</button>
+        <button class="btn-circle btn-circle-primary mb-2" data-bs-toggle="modal"
+            data-bs-target="#modalOrangTua{{ $person->id }}" title="Tambah Orang Tua" data-testid="add-parent-btn-{{ $person->id }}">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
         @endif
 
         <div class="node-group">
             <div id="person-node-{{ $person->id }}"
-                class="node {{ $person->jenis_kelamin == 'P' ? 'female' : '' }} {{ $person->status == 'meninggal' ? 'deceased' : '' }} shadow-sm"
+                class="node {{ $person->jenis_kelamin == 'P' ? 'female' : '' }} {{ $person->status == 'meninggal' ? 'deceased' : '' }}"
                 data-id="{{ $person->id }}"
                 data-parent="{{ $person->ayah_id ?? $person->ibu_id ?? '' }}"
-                style="transition: all 0.3s ease; position: relative;">
+                data-testid="node-{{ $person->id }}">
 
-                <button class="btn-trace" onclick="highlightJalur('{{ $person->id }}')"
-                    style="position: absolute; top: 2px; left: 2px; border: none; background: rgba(0,0,0,0.1); border-radius: 50%; width: 18px; height: 18px; font-size: 9px; cursor: pointer;">
+                <button class="btn-trace" onclick="highlightJalur('{{ $person->id }}')" title="Lacak Jalur" data-testid="trace-btn-{{ $person->id }}">
                     <i class="fa-solid fa-crosshairs"></i>
                 </button>
 
-                <div onclick="jQuery('#modalShow{{ $person->id }}').modal('show')" style="cursor: pointer; padding-top: 5px;">
+                <div onclick="jQuery('#modalShow{{ $person->id }}').modal('show')" style="cursor: pointer;">
                     @if($person->foto)
-                    <img src="{{ asset('storage/' . $person->foto) }}" alt="foto">
+                    <img src="{{ asset('storage/' . $person->foto) }}" alt="{{ $person->nama }}" loading="lazy">
+                    @else
+                    <div class="default-avatar {{ $person->jenis_kelamin == 'L' ? 'male' : 'female' }}">
+                        <i class="fa-solid {{ $person->jenis_kelamin == 'L' ? 'fa-mars' : 'fa-venus' }}"></i>
+                    </div>
                     @endif
-                    <div class="fw-bold" style="font-size: 13px;">{{ $person->nama }}</div>
-                    {{-- <div class="text-muted" style="font-size: 10px;">{{ $person->tgl_lahir ?? '-' }}</div> --}}
+                    <div class="node-name">{{ $person->nama }}</div>
                 </div>
             </div>
 
             @if($person->pasangan)
             <div class="connector-spouse"></div>
             <div id="person-node-{{ $person->pasangan->id }}"
-                class="node {{ $person->pasangan->jenis_kelamin == 'P' ? 'female' : '' }} {{ $person->pasangan->status == 'meninggal' ? 'deceased' : '' }} shadow-sm"
+                class="node {{ $person->pasangan->jenis_kelamin == 'P' ? 'female' : '' }} {{ $person->pasangan->status == 'meninggal' ? 'deceased' : '' }}"
                 data-id="{{ $person->pasangan->id }}"
                 data-parent=""
-                style="cursor: pointer; transition: all 0.3s ease;"
-                data-bs-toggle="modal" data-bs-target="#modalShow{{ $person->pasangan->id }}">
+                style="cursor: pointer;"
+                onclick="jQuery('#modalShow{{ $person->pasangan->id }}').modal('show')"
+                data-testid="node-{{ $person->pasangan->id }}">
 
                 @if($person->pasangan->foto)
-                <img src="{{ asset('storage/' . $person->pasangan->foto) }}" alt="foto">
+                <img src="{{ asset('storage/' . $person->pasangan->foto) }}" alt="{{ $person->pasangan->nama }}" loading="lazy">
+                @else
+                <div class="default-avatar {{ $person->pasangan->jenis_kelamin == 'L' ? 'male' : 'female' }}">
+                    <i class="fa-solid {{ $person->pasangan->jenis_kelamin == 'L' ? 'fa-mars' : 'fa-venus' }}"></i>
+                </div>
                 @endif
-                <div class="fw-bold" style="font-size: 13px;">{{ $person->pasangan->nama }}</div>
-                {{-- <div class="text-muted" style="font-size: 10px;">{{ $person->pasangan->tgl_lahir ?? '-' }}</div> --}}
+                <div class="node-name">{{ $person->pasangan->nama }}</div>
             </div>
 
             @include('silsilah.modal_show', ['person' => $person->pasangan])
             @else
-            <button class="btn btn-info btn-sm btn-circle ms-1 text-white" data-bs-toggle="modal"
-                data-bs-target="#modalPasangan{{ $person->id }}">↔</button>
+            <button class="btn-circle btn-circle-info ms-1" data-bs-toggle="modal"
+                data-bs-target="#modalPasangan{{ $person->id }}" title="Tambah Pasangan" data-testid="add-spouse-btn-{{ $person->id }}">
+                <i class="fa-solid fa-heart"></i>
+            </button>
             @endif
         </div>
 
         <div class="mt-2">
-            <button class="btn btn-warning btn-sm btn-circle" data-bs-toggle="modal"
-                data-bs-target="#modalAnak{{ $person->id }}">↓</button>
+            <button class="btn-circle btn-circle-warning" data-bs-toggle="modal"
+                data-bs-target="#modalAnak{{ $person->id }}" title="Tambah Anak" data-testid="add-child-btn-{{ $person->id }}">
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
         </div>
     </div>
 
