@@ -1,0 +1,166 @@
+{
+  "identity": {
+    "name": "Silsilah Keluarga (Family Tree)",
+    "persona": "E1: The Anti-AI Designer",
+    "tone": "Warm, Nostalgic, Connected, Soft, Modern",
+    "target_audience": "Indonesian Families documenting their heritage"
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Fraunces, serif",
+      "body": "Nunito, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-3xl md:text-4xl font-semibold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-semibold",
+      "body": "text-base md:text-lg leading-relaxed",
+      "caption": "text-sm text-muted-foreground"
+    },
+    "imports": [
+      "@fontsource/fraunces",
+      "@fontsource/nunito"
+    ]
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#81B29A",
+        "foreground": "#FFFFFF",
+        "hover": "#6D9A84"
+      },
+      "secondary": {
+        "DEFAULT": "#E07A5F",
+        "foreground": "#FFFFFF",
+        "hover": "#C86B52"
+      },
+      "background": "#FDFBF7",
+      "foreground": "#3D405B",
+      "muted": {
+        "DEFAULT": "#F4F1DE",
+        "foreground": "#8D909B"
+      },
+      "card": {
+        "DEFAULT": "#FFFFFF",
+        "foreground": "#3D405B"
+      },
+      "border": "#EAE6D8",
+      "input": "#F4F1DE",
+      "ring": "#81B29A"
+    },
+    "semantic": {
+      "male": "#3D5A80",
+      "female": "#EE6C4D",
+      "deceased": "#989898"
+    }
+  },
+  "visual_enhancers": {
+    "radius": "rounded-2xl",
+    "shadows": {
+      "soft": "0 4px 20px -2px rgba(61, 64, 91, 0.05)",
+      "hover": "0 10px 25px -5px rgba(61, 64, 91, 0.1)",
+      "card": "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.1)"
+    },
+    "glassmorphism": {
+      "enabled": true,
+      "classes": "bg-white/80 backdrop-blur-md border border-white/20 shadow-sm"
+    },
+    "textures": "Subtle paper grain overlay on background for nostalgic feel"
+  },
+  "layout": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing": {
+      "section": "py-12 md:py-20",
+      "component": "p-6 md:p-8"
+    },
+    "grid": {
+      "dashboard": "grid grid-cols-1 md:grid-cols-12 gap-6"
+    }
+  },
+  "components": {
+    "FamilyTreeCanvas": {
+      "description": "Infinite canvas for the family tree. Pan and zoom enabled.",
+      "library": "react-zoom-pan-pinch",
+      "style": "w-full h-[calc(100vh-4rem)] bg-background cursor-grab active:cursor-grabbing relative overflow-hidden"
+    },
+    "NodeCard": {
+      "description": "Card representing a family member.",
+      "style": "w-64 bg-card rounded-2xl shadow-card hover:shadow-hover transition-all duration-300 border border-border flex flex-col items-center p-4 relative group",
+      "elements": {
+        "avatar": "w-20 h-20 rounded-full object-cover border-4 border-white shadow-sm mb-3",
+        "name": "font-heading font-bold text-lg text-foreground text-center",
+        "dates": "text-xs text-muted-foreground font-mono mb-2",
+        "actions": "opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-4 flex gap-2"
+      }
+    },
+    "FloatingControls": {
+      "description": "Zoom, center, and export controls.",
+      "style": "fixed bottom-8 right-8 flex flex-col gap-2 z-50"
+    },
+    "SearchBar": {
+      "description": "Search family members with autocomplete.",
+      "style": "fixed top-4 left-4 md:left-1/2 md:-translate-x-1/2 w-[90%] md:w-96 z-50 shadow-soft"
+    }
+  },
+  "motion": {
+    "transitions": "transition-all duration-300 ease-out",
+    "animations": {
+      "fadeIn": "animate-in fade-in duration-500",
+      "slideUp": "animate-in slide-in-from-bottom-4 duration-500",
+      "scaleIn": "animate-in zoom-in-95 duration-300"
+    }
+  },
+  "image_urls": {
+    "avatars": [
+      {
+        "category": "elderly_man",
+        "url": "https://images.unsplash.com/photo-1758686253859-8ef7e940096e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxlbGRlcmx5JTIwbWFuJTIwcG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8fHx8MTc3MDAwODk0Nnww&ixlib=rb-4.1.0&q=85",
+        "description": "Elderly man smiling"
+      },
+      {
+        "category": "elderly_woman",
+        "url": "https://images.unsplash.com/photo-1758686254563-5c5ab338c8b9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxlbGRlcmx5JTIwd29tYW4lMjBwb3J0cmFpdCUyMHNtaWxpbmd8ZW58MHx8fHwxNzcwMDA4OTUxfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Elderly woman smiling"
+      },
+      {
+        "category": "man",
+        "url": "https://images.unsplash.com/photo-1712599982295-1ecff6059a57?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdCUyMHNtaWxpbmd8ZW58MHx8fHwxNzcwMDA4OTU2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Adult man smiling"
+      },
+      {
+        "category": "woman",
+        "url": "https://images.unsplash.com/photo-1594318223885-20dc4b889f9e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBvcnRyYWl0JTIwc21pbGluZ3xlbnwwfHx8fDE3NzAwMDg5NTl8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Adult woman smiling"
+      },
+      {
+        "category": "boy",
+        "url": "https://images.unsplash.com/photo-1644966825640-bf597f873b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxib3klMjBwb3J0cmFpdCUyMHNtaWxpbmd8ZW58MHx8fHwxNzcwMDA4OTYzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Young boy smiling"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use 'Fraunces' for all headings to give a warm, heritage feel.",
+    "Use 'Nunito' for body text for readability and friendliness.",
+    "Implement the Family Tree using 'react-zoom-pan-pinch' for the canvas.",
+    "Ensure the design is mobile-first. On mobile, the tree should be easily pannable.",
+    "Use the defined color palette. Primary is Sage Green (#81B29A), Secondary is Terracotta (#E07A5F).",
+    "Use Shadcn UI components but customize them with the 'rounded-2xl' radius and warm colors.",
+    "For the 'Add Person' modals, use a clean, step-by-step form or a well-organized single page form.",
+    "Ensure high contrast for accessibility, especially for elderly users.",
+    "Use the provided image URLs as placeholders for family members.",
+    "Create a 'design_system' folder to store reusable styles and variants."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not use generic centered layouts.",
+    "Create depth through layered design elements.",
+    "Use glassmorphism effects with backdrop filters.",
+    "Every interaction needs micro-animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Prioritize using pre-existing components from src/components/ui.",
+    "Components MUST use named exports.",
+    "Pages MUST use default exports.",
+    "Use 'sonner' for toasts."
+  ]
+}
